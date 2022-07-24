@@ -18,9 +18,9 @@ jobs:
           fetch-depth: 0
       - name: Check New Commit
         run: |
-          upstreamCode=https://github.com/CatVodTVOfficial/TVBoxOSC
+          upstreamCode=https://github.com/chihwell/TVBoxOSC
           echo "upstreamCode=$upstreamCode" >> $GITHUB_ENV
-          commit=$(curl -sL $upstreamCode/commits/main |grep -o '/CatVodTVOfficial/TVBoxOSC/commit/[a-z0-9]\+' |head -1 | cut -d\/ -f5)
+          commit=$(curl -sL $upstreamCode/commits/main |grep -o '/chihwell/TVBoxOSC/commit/[a-z0-9]\+' |head -1 | cut -d\/ -f5)
           if ! git log --oneline |grep -q "$commit"; then
             echo "commit=$commit" >> $GITHUB_ENV
             echo "commitS=${commit:0:7}" >> $GITHUB_ENV
@@ -77,7 +77,7 @@ jobs:
         uses: actions/upload-artifact@v3
         if: ${{ env.commit }}
         with:
-          name: TVBox_Release_and_Debug
+          name: TVBox_chihwell_Release_and_Debug
           path: TVBoxOSC/apk/*
       - name: Release and Upload Assets
         uses: softprops/action-gh-release@v1
